@@ -16,4 +16,4 @@ jobs:
     - uses: julia-actions/setup-julia@v1
       with:
         version: 1.7-nightly
-    - run: make && julia -e 'println("Hello, World!")'
+    - run: make && julia ./test/unit_test.jl
