@@ -10,5 +10,3 @@ function fisher_exact(n11::Clonglong, n12::Clonglong, n21::Clonglong, n22::Clong
 
     return (p, p_l.x, p_r.x, p_t.x)
 end
-
-println(fisher_exact(12, 5, 29, 2))
