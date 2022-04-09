@@ -8,7 +8,7 @@ test: libkfunc.so test.jl
 libkfunc.so: kfunc.o
 	$(CXX) -shared -undefined dynamic_lookup $^ -o $@
 
-kfunc.o: kfunc.cpp kfunc2.h
+kfunc.o: kfunc.cpp kfunc.h
 	$(CXX) -c kfunc.cpp -o $@
 
 clean:
