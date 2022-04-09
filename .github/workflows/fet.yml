@@ -1,0 +1,19 @@
+name: fet
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1.0.0
+    - uses: julia-actions/setup-julia@v1
+      with:
+        version: 1.7-nightly
+    - run: make && julia -e 'println("Hello, World!")'
