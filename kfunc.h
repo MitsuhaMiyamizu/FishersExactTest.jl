@@ -8,9 +8,6 @@
 #ifndef KFUNC_H_
 #define KFUNC_H_
 
-#include <cmath>
-#include <stdlib.h>
-
 #ifdef M_SQRT2
 #undef M_SQRT2
 #endif // M_SQRT2
