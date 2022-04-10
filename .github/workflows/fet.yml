@@ -7,13 +7,18 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-
-    runs-on: macOS-latest
-
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        julia-version: ['1.0', '1.2.0', '1.7-nightly']
+        os: [ubuntu-latest, macOS-latest]
+    
     steps:
-    - uses: actions/checkout@v1.0.0
-    - uses: julia-actions/setup-julia@v1
-      with:
-        version: 1.7-nightly
-    - run: make && julia ./test/unit_test.jl
+      - uses: actions/checkout@v1.0.0
+      - name: "Set up Julia"
+        uses: julia-actions/setup-julia@v1
+        with:
+          version: ${{ matrix.julia-version }}
+      - run: make && julia ./test/unit_test.jl
+        shell: bash
