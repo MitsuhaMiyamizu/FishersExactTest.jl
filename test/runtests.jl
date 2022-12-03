@@ -1,5 +1,6 @@
 using fet
 using Test
+using SpecialFunctions
 
 include("cref/fet_cref.jl")
 
