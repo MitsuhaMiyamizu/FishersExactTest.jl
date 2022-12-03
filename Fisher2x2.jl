@@ -46,7 +46,7 @@ function kf_erfc(x::Float64)
     p = float(0)
     z = abs(x) * M_SQRT2
     if z > 37.0 
-        return x > 0. ? 0. : 2.;
+        return x > 0. ? x = 0. : x = 2.
     end
     expntl = exp(z * z * - 0.5)
     if z < (10.0 / M_SQRT2)
@@ -54,7 +54,7 @@ function kf_erfc(x::Float64)
 	else 
         p = expntl / 2.506628274631001 / (z + 1. / (z + 2. / (z + 3. / (z + 4. / (z + .65)))))
     end
-    return x > 0. ? 2. * p : 2. * (1. - p)
+    return x > 0. ? x = 2. * p : x = 2. * (1. - p)
 end
 
 """
@@ -78,7 +78,7 @@ function _kf_gammap(s::Float64, z::Float64)
     sum = x = 1.
     while k < 100
         sum += (x *= z / (s + k))
-        if ((x / sum) < KF_GAMMA_EPS)) break end
+        if ((x / sum) < KF_GAMMA_EPS) break end
 	k += 1
     end
     return exp(s * log(z) - z - kf_lgamma(s + 1.) + log(sum))
@@ -108,11 +108,19 @@ function _kf_gammaq(s::Float64, z::Float64)
 end
 
 function kf_gammap(s::Float64, z::Float64)
-    return z <= 1. || z < s ? _kf_gammap(s, z) : 1. - _kf_gammaq(s, z)
+    if z <= 1. || z < s 
+        return _kf_gammap(s, z)
+    else 
+        return 1. - _kf_gammaq(s, z)
+    end
 end
 
 function kf_gammaq(s::Float64, z::Float64)
-    return z <= 1. || z < s ? 1. - _kf_gammap(s, z) : _kf_gammaq(s, z)
+    if z <= 1. || z < s
+        return 1. - _kf_gammap(s, z) 
+    else 
+        return _kf_gammaq(s, z)
+    end
 end
 
 """
@@ -133,7 +141,7 @@ function kf_betai_aux(a::Float64, b::Float64, x::Float64)
     # Modified Lentz's algorithm for computing continued fraction
     for j in 1:199
         m = j << 1
-        aa = (j & 1 == 1) ? j = - (a + m) * (a + b + m) * x / ((a + 2 * m) * (a + 2 * m + 1)) : j = m * (b - m) * x / ((a + 2 * m - 1) * (a + 2 * m))
+        (j & 1 == 1) ? aa = - (a + m) * (a + b + m) * x / ((a + 2 * m) * (a + 2 * m + 1)) : aa = m * (b - m) * x / ((a + 2 * m - 1) * (a + 2 * m))
         D = 1. + aa * D
         D < KF_TINY ? D = KF_TINY : D
         C = 1. + aa / C
@@ -146,9 +154,10 @@ function kf_betai_aux(a::Float64, b::Float64, x::Float64)
     return exp(kf_lgamma(a + b) - kf_lgamma(a) - kf_lgamma(b) + a * log(x) + b * log(1. - x)) / a / f
 end
 
-"""
- log \ binom{n}{k}
-"""
+#
+# log \ binom{n}{k}
+#
+
 function lbinom(n::Int, k::Int)
     if (k == 0 || n == k) return 0 end
     return lgamma(n + 1) - lgamma(k + 1) - lgamma(n - k + 1)
