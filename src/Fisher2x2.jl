@@ -103,8 +103,8 @@ function _kf_gammaq(s::Float64, z::Float64)
         if (abs(d - 1.)) < KF_GAMMA_EPS 
             break
         end
-    return exp(s * log(z) - z - kf_lgamma(s) - log(f))
     end
+    return exp(s * log(z) - z - kf_lgamma(s) - log(f))
 end
 
 function kf_gammap(s::Float64, z::Float64)
@@ -140,7 +140,7 @@ function kf_betai_aux(a::Float64, b::Float64, x::Float64)
     C = f
     # Modified Lentz's algorithm for computing continued fraction
     for j in 1:199
-        m = j << 1
+        m = j >> 1
         (j & 1 == 1) ? aa = - (a + m) * (a + b + m) * x / ((a + 2 * m) * (a + 2 * m + 1)) : aa = m * (b - m) * x / ((a + 2 * m - 1) * (a + 2 * m))
         D = 1. + aa * D
         D < KF_TINY ? D = KF_TINY : D
