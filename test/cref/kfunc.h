@@ -26,11 +26,11 @@ double kf_betai(double a, double b, double x);
 double kf_gammap(double s, double z);
 double kf_gammaq(double s, double z);
 
-static double kf_betai_aux(double a, double b, double x);
-static double _kf_gammap(double s, double z);
-static double _kf_gammaq(double s, double z);
-static double lbinom(long long n, long long k);
-static double hypergeo(long long n11, long long n1_, long long n_1, long long n);
+double kf_betai_aux(double a, double b, double x);
+double _kf_gammap(double s, double z);
+double _kf_gammaq(double s, double z);
+double lbinom(long long n, long long k);
+double hypergeo(long long n11, long long n1_, long long n_1, long long n);
 
 typedef struct {
     long long n11, n1_, n_1, n;
@@ -40,7 +40,7 @@ typedef struct {
 // incremental version of hypergenometric distribution
 double kt_fisher_exact(long long n11, long long n12, long long n21, long long n22, double *_left, double *_right, double *two);
 
-static double hypergeo_acc(long long n11, long long n1_, long long n_1, long long n, hgacc_t *aux);
+double hypergeo_acc(long long n11, long long n1_, long long n_1, long long n, hgacc_t *aux);
 
 #ifdef __cplusplus
 }
