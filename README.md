@@ -7,4 +7,4 @@ Fisher's Exact Test was extracted from [bedtools](https://github.com/arq5x/bedto
 # Courtesy
 [@Ionizing](https://github.com/Ionizing)
 
-[@atlasmir]https://github.com/atlasmir
+[@atlasmir](https://github.com/atlasmir)
