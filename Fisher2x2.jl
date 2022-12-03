@@ -74,22 +74,22 @@ end
 function _kf_gammap(s::Float64, z::Float64)
     sum = float(0)
     x = float(0)
-    k = 0
-    for k in 1:99
-        sum = x = 1.
+    k = 1
+    sum = x = 1.
+    while k < 100
         sum += (x *= z / (s + k))
-        if (x / sum < KF_GAMMA_EPS) break
-        end
+        if ((x / sum) < KF_GAMMA_EPS)) break end
+	k += 1
     end
     return exp(s * log(z) - z - kf_lgamma(s + 1.) + log(sum))
 end
 
 function _kf_gammaq(s::Float64, z::Float64)
-    j = Int64(0)
-    C = float(0)
-    D = float(0.)
-    f = float(0)
+    j = Int64(1)
+    D = float(0)
+    #f = float(0)
     f = 1. + z - s
+    C = f
     for j in 1:99
         a = j * (s - j)
         b = (j << 1) + 1 + z - s
@@ -129,7 +129,7 @@ function kf_betai_aux(a::Float64, b::Float64, x::Float64)
     if x == 0. return 0. end
     if x == 1. return 1. end
     f = 1.
-    C = f = float(0)
+    C = f
     # Modified Lentz's algorithm for computing continued fraction
     for j in 1:199
         m = j << 1
@@ -161,7 +161,7 @@ end
 """
 hypergeometric distribution
 """
-function hypergeo(n11::Int, n1_::Int, n_1::Int, n::Int)
+function hypergeo(n11::Int64, n1_::Int64, n_1::Int64, n::Int64)
     return exp(lbinom(n1_, n11) + lbinom(n - n1_, n_1 - n11) - lbinom(n, n_1))
 end
 
@@ -235,7 +235,6 @@ function kt_fisher_exact(n11::Int64, n12::Int64, n21::Int64, n22::Int64) #::Tupl
     end
     i -= 1
     p < 1.00000001 * q ? left += p : i -= 1
-    p = hypergeo_acc(max, 0, 0, 0, aux)
     #right tail
     p = hypergeo_acc(max, 0, 0, 0, aux)
     right = float(0)
