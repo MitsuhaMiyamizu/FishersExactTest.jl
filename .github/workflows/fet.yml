@@ -20,5 +20,5 @@ jobs:
         uses: julia-actions/setup-julia@v1
         with:
           version: ${{ matrix.julia-version }}
-      - run: make && julia ./test/unit_test.jl
+      - run: make -C ./test/cref && julia --project ./test/runtests.jl
         shell: bash
