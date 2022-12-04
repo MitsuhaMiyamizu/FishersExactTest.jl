@@ -1,4 +1,4 @@
-# fet.jl
+# FishersExactTest.jl
 An accurate implementation of Fisher's Exact Test for Julia.
 
 # Reference
