@@ -1,7 +1,7 @@
+using Base.Test, SpecialFunctions: lgamma
+
 include("cref/fet_cref.jl")
 include("../src/fet.jl")
-using Base.Test
-using SpecialFunctions: lgamma
 
 @testset "Fisher's Exact Test" begin
     @testset "kf_lgamma" begin
