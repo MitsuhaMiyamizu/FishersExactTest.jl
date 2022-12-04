@@ -1,6 +1,6 @@
 #!/usr/bin/env julia
 
-import fet.hgacc_t
+import FishersExactTest.hgacc_t
 
 CREF_IMAGE = string(@__DIR__, "/libkfunc.so")
 
