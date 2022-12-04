@@ -1,4 +1,4 @@
-using Base.Test, SpecialFunctions
+using Test, SpecialFunctions
 
 include("cref/fet_cref.jl")
 include("../src/fet.jl")
