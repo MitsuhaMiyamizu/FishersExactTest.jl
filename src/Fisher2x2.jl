@@ -267,7 +267,7 @@ function kt_fisher_exact(n11::Int64, n12::Int64, n21::Int64, n22::Int64) #::Tupl
     return q, _left, _right, two
 end
 
-mutable struct FishersExactTest
+mutable struct FisherExactTest
     # conditional maximum likehood estimate of odd ratio
     p          ::Float64
     left_tail  ::Float64
