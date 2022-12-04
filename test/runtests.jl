@@ -1,6 +1,3 @@
-using fet
-using Test
-import Pkg; Pkg.add("SpecialFunctions")
 using SpecialFunctions: lgamma
 
 include("cref/fet_cref.jl")
