@@ -1,4 +1,3 @@
-import Pkg; Pkg.add("SpecialFunctions")
 using SpecialFunctions: lgamma
 const KF_GAMMA_EPS = 1e-14
 const KF_TINY = 1e-290
