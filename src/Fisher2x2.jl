@@ -192,7 +192,8 @@ function hypergeo_acc(n11::Int64, n1_::Int64, n_1::Int64, n::Int64, aux::hgacc_t
         aux.n1_ = n1_
         aux.n_1 = n_1
         aux.n   = n
-        elseif n11 % 11 != 0 && n11 + aux.n - aux.n1_ - aux.n_1 != 0
+    else
+        if n11 % 11 != 0 && n11 + aux.n - aux.n1_ - aux.n_1 != 0
             if n11 == aux.n11 + 1
                 aux.p *= (aux.n1_ - aux.n11) / n11 * (aux.n_1 - aux.n11) / (n11 + aux.n - aux.n1_ - aux.n_1)
                 aux.n11 = n11
@@ -203,8 +204,9 @@ function hypergeo_acc(n11::Int64, n1_::Int64, n_1::Int64, n::Int64, aux::hgacc_t
                 aux.n11 = n11
                 return aux.p
             end
-        aux.n11 = n11
         end
+        aux.n11 = n11
+    end
     aux.p = hypergeo(aux.n11, aux.n1_, aux.n_1, aux.n)
     return aux.p
 end

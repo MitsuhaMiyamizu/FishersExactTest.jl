@@ -75,30 +75,24 @@ include("../src/fet.jl")
         hypergeo = fet.hypergeo
         n11, n1_, n_1, n = 1656, 32106, 17466, 251573
         @test hypergeo_cref(n11, n1_, n_1, n) ≈ hypergeo(n11, n1_, n_1, n)
+
+        n11, n1_, n_1, n = 3, 4, 4, 8
+        @test hypergeo_cref(n11, n1_, n_1, n) ≈ hypergeo(n11, n1_, n_1, n)
     end
 
     @testset "hypergeo_acc" begin
         hypergeo_acc = fet.hypergeo_acc
 
-        # n11, n1_, n_1, n = 1656, 32106, 17466, 251573
-        # aux = hgacc_t(2, 3, 4, 5, 0.0)
-        # aux_ref = Ptr{hgacc_t}(pointer_from_objref(aux))
-        # @test hypergeo_acc_cref(n11, n1_, n_1, n, aux_ref) ≈ hypergeo_acc(n11, n1_, n_1, n, aux)
-
-        # n11, n1_, n_1, n = 0, 0, 0, 0
-        # aux = hgacc_t(1656, 33762, 19122, 302801, 0.0)
-        # aux_ref = Ptr{hgacc_t}(pointer_from_objref(aux))
-        # @test hypergeo_acc_cref(n11, n1_, n_1, n, aux_ref) ≈ hypergeo_acc(n11, n1_, n_1, n, aux)
-
-        # n11, n1_, n_1, n = 1, 0, 0, 0
-        # aux = hgacc_t(0, 33762, 19122, 302801, 0.0)
-        # aux_ref = Ptr{hgacc_t}(pointer_from_objref(aux))
-        # @test hypergeo_acc_cref(n11, n1_, n_1, n, aux_ref) ≈ hypergeo_acc(n11, n1_, n_1, n, aux)
-
         n11, n1_, n_1, n = 3, 0, 0, 0
         aux = hgacc_t(4, 4, 4, 8, 0.014286)
         aux_ref = Ptr{hgacc_t}(pointer_from_objref(aux))
-        @test hypergeo_acc_cref(n11, n1_, n_1, n, aux_ref) ≈ hypergeo_acc(n11, n1_, n_1, n, aux)
+
+        ref = hypergeo_acc_cref(n11, n1_, n_1, n, aux_ref)
+
+        aux = hgacc_t(4, 4, 4, 8, 0.014286)
+        aux_ref = Ptr{hgacc_t}(pointer_from_objref(aux))
+        val = hypergeo_acc(n11, n1_, n_1, n, aux)
+        @test ref ≈ val
     end
 
     @testset "kt_fisher_exact" begin
