@@ -20,5 +20,7 @@ jobs:
         uses: julia-actions/setup-julia@v1
         with:
           version: ${{ matrix.julia-version }}
-      - run: make -C ./test/cref && julia --project ./test/runtests.jl -e 'using Pkg; Pkg.add("SpecialFunctions")'
+      - uses: julia-actions/julia-buildpkg@v1
+      - uses: julia-actions/julia-runtest@v1
+      - run: make -C ./test/cref && julia --project ./test/runtests.jl
         shell: bash
