@@ -4,7 +4,6 @@
  */
  
 #include "kfunc.h"
-#include "stdio.h"
 
 double kf_lgamma(double z)
 {
@@ -190,8 +189,6 @@ double hypergeo(long long n11, long long n1_, long long n_1, long long n)
 // incremental version of hypergenometric distribution
 double hypergeo_acc(long long n11, long long n1_, long long n_1, long long n, hgacc_t *aux)
 {
-    printf("n11=%lld n1_=%lld n_1=%lld n=%lld, aux->n11=%lld aux->n1_=%lld aux->n_1=%lld aux->n=%lld aux->p=%lf       ", 
-            n11, n1_, n_1, n, aux->n11, aux->n1_, aux->n_1, aux->n, aux->p);
     if (n1_ || n_1 || n) {
         aux->n11 = n11; aux->n1_ = n1_; aux->n_1 = n_1; aux->n = n;
     } else { // then only n11 changed; the rest fixed
@@ -212,7 +209,6 @@ double hypergeo_acc(long long n11, long long n1_, long long n_1, long long n, hg
         aux->n11 = n11;
     }
     aux->p = hypergeo(aux->n11, aux->n1_, aux->n_1, aux->n);
-    printf("p=%lf\n", aux->p);
     return aux->p;
 }
 
