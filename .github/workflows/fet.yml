@@ -21,6 +21,6 @@ jobs:
         with:
           version: ${{ matrix.julia-version }}
       - uses: julia-actions/julia-buildpkg@v1
-      - uses: julia-actions/julia-runtest@v1
-      - run: make -C ./test/cref && julia --project ./test/runtests.jl
+      - run: make -C ./test/cref
         shell: bash
+      - uses: julia-actions/julia-runtest@v1
