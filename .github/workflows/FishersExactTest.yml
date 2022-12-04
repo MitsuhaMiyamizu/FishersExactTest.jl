@@ -1,4 +1,4 @@
-name: fet
+name: FishersExactTest
 
 on:
   push:
