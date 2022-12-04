@@ -1,7 +1,7 @@
-using fet
-using Test
+using Test, SpecialFunctions
 
 include("cref/fet_cref.jl")
+include("../src/fet.jl")
 
 @testset "Fisher's Exact Test" begin
     @testset "kf_lgamma" begin
