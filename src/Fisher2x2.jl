@@ -1,4 +1,4 @@
-using SpecialFunctions: lgamma
+using SpecialFunctions: logabsgamma
 const KF_GAMMA_EPS = 1e-14
 const KF_TINY = 1e-290
 
@@ -160,7 +160,7 @@ end
 
 function lbinom(n::Int, k::Int)
     if (k == 0 || n == k) return 0 end
-    return lgamma(n + 1) - lgamma(k + 1) - lgamma(n - k + 1)
+    return logabsgamma(n + 1)[1] - logabsgamma(k + 1)[1] - logabsgamma(n - k + 1)[1]
 end
 
 # n11  n12  | n1_
