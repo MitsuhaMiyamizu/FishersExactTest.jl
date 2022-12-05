@@ -2,7 +2,7 @@
 An accurate implementation of Fisher's Exact Test for Julia.
 
 # Motivation
-We and [someone else](https://blog.goo.ne.jp/r-de-r/e/f206d5a1bfb6ed1f60d9bd47c0865299) found a [bug](https://github.com/JuliaStats/HypothesisTests.jl/issues/148) in the implementation of Fisher's Exact Test provided by [JuliaStats](https://github.com/JuliaStats/HypothesisTests.jl), it seems that due to technical limitations behind their algorithm, the bug cannot be fixed in a short period of time.
+We and [someone else](https://blog.goo.ne.jp/r-de-r/e/f206d5a1bfb6ed1f60d9bd47c0865299) found an accuracy-related [bug](https://github.com/JuliaStats/HypothesisTests.jl/issues/148) in the implementation of Fisher's Exact Test provided by [JuliaStats](https://github.com/JuliaStats/HypothesisTests.jl), it seems that due to technical limitations behind their algorithm, the bug cannot be fixed in a short period of time.
 
 # How to use
 Simply by querying
