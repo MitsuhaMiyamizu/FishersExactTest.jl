@@ -12,13 +12,18 @@ Simply by querying
 ```
 import Pkg; Pkg.add("FishersExactTest")
 using FishersExactTest
-FisherExact2x2Test(a, b, c, d)
+FisherExact2x2Test(a, b, c, d);
 
-k = FisherExact2x2Test(a, b, c, d)
+k = FisherExact2x2Test(a, b, c, d, opt = :silent);
 k.p          # p_value
 k.left_tail  # left_tail
 k.right_tail # right_tail
 k.two_tail   # two_sides
+
+# Options for printing
+FisherExact2x2Test(a, b, c, d, opt = :verbose);
+# Options for suppress print
+k = FisherExact2x2Test(a, b, c, d, opt = :silent);
 ```
 where a, b, c, d are distributed in
 | a  |  b |
