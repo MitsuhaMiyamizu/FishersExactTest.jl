@@ -279,12 +279,18 @@ end
 Fisher's Exact Test for 2x2 Contingency Table
 """
 
-function FisherExact2x2Test(a::Int, b::Int, c::Int, d::Int)
+function FisherExact2x2Test(a::Int, b::Int, c::Int, d::Int; opt=:verbose)
     x = FisherExactTest(0.0, 0.0, 0.0, 0.0)
     x.p, x.left_tail, x.right_tail, x.two_tail = kt_fisher_exact(a, b, c, d)
-    println("p value    = \t", x.p)
-    println("left tail  = \t", x.left_tail)
-    println("right tail = \t", x.right_tail)
-    println("two sided  = \t", x.two_tail)
-    return x
+    if opt == :silent
+        return x
+    elseif opt == :verbose
+        println("p value    = \t", x.p)
+        println("left tail  = \t", x.left_tail)
+        println("right tail = \t", x.right_tail)
+        println("two sided  = \t", x.two_tail)
+        return x
+    else 
+        throw(ArgumentError("opt=$(opt) is illegal, try :verbose or :silent instead"))
+    end
 end
