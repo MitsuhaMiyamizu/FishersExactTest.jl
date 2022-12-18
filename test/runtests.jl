@@ -5,62 +5,6 @@ using FishersExactTest
 import FishersExactTest.hgacc_t
 
 @testset "Fisher's Exact Test" begin
-    @testset "kf_lgamma" begin
-        @test kf_lgamma_cref(3.1415926) ≈ logabsgamma(3.1415926)[1]
-        for i in 1:9
-            n = 10^i + rand()
-            @test kf_lgamma_cref(n) ≈ logabsgamma(n)[1]
-        end
-    end
-
-    @testset "kf_erfc" begin
-        kf_erfc = FishersExactTest.kf_erfc
-        @test kf_erfc_cref(0.0) ≈ kf_erfc(0.0)
-        @test kf_erfc_cref(2.0) ≈ kf_erfc(2.0)
-
-        for i in 1:9
-            n = 10^i + rand()
-            @test kf_erfc_cref(n) ≈ kf_erfc(n)
-        end
-    end
-
-    @testset "_kf_gammap" begin
-        _kf_gammap = FishersExactTest._kf_gammap
-        @test _kf_gammap_cref(2.0, 3.0) ≈ _kf_gammap(2.0, 3.0)
-        @test _kf_gammap_cref(0.0, 0.1) ≈ _kf_gammap(0.0, 0.1)
-        @test _kf_gammap_cref(1.0, 0.1) ≈ _kf_gammap(1.0, 0.1)
-    end
-
-    @testset "_kf_gammaq" begin
-        _kf_gammaq = FishersExactTest._kf_gammaq
-        @test _kf_gammaq_cref(2.0, 3.0) ≈ _kf_gammaq(2.0, 3.0)
-        @test _kf_gammaq_cref(1.0, 0.1) ≈ _kf_gammaq(1.0, 0.1)
-    end
-
-    @testset "kf_gammap" begin
-        kf_gammap = FishersExactTest.kf_gammap
-        @test kf_gammap_cref(2.0, 3.0) ≈ kf_gammap(2.0, 3.0)
-        @test kf_gammap_cref(0.0, 0.1) ≈ kf_gammap(0.0, 0.1)
-        @test kf_gammap_cref(1.0, 0.1) ≈ kf_gammap(1.0, 0.1)
-    end
-
-    @testset "kf_gammaq" begin
-        kf_gammaq = FishersExactTest.kf_gammaq
-        @test kf_gammaq_cref(2.0, 3.0) ≈ kf_gammaq(2.0, 3.0)
-        @test kf_gammaq_cref(1.0, 0.1) ≈ kf_gammaq(1.0, 0.1)
-    end
-
-    @testset "kf_betai_aux" begin
-        kf_betai_aux = FishersExactTest.kf_betai_aux
-        a, b, x = 0.1, 0.1, 0.1
-        @test kf_betai_aux_cref(a, b, x) ≈ kf_betai_aux(a, b, x)
-    end
-
-    # @testset "kf_betai" begin
-        # kf_betai = FishersExactTest.kf_betai
-        # a, b, x = 0.1, 0.8, 0.4
-        # @test kf_betai_cref(a, b, x) ≈ kf_betai(a, b, x)
-    # end
 
     @testset "lbinom" begin
         lbinom = FishersExactTest.lbinom
