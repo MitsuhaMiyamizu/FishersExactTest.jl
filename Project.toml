@@ -1,7 +1,7 @@
 name = "FishersExactTest"
 uuid = "bb7b2d4f-b953-405a-be8a-3427bcf465e4"
 authors = ["MiyamizuMitsuha"]
-version = "1.1.0"
+version = "1.2.0"
 
 [deps]
 SpecialFunctions = "276daf66-3868-5448-9aa4-cd146d93841b"
