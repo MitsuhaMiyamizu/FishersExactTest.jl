@@ -2,24 +2,6 @@ using SpecialFunctions: logabsgamma
 const KF_GAMMA_EPS = 1e-14
 const KF_TINY = 1e-290
 
-## Log gamma function
-## * \log{\Gamma(z)}
-## * AS245, 2nd algorithm, http://lib.stat.cmu.edu/apstat/245
-
-function kf_lgamma(z::Float64)
-    x = float(0.0)
-	x += 0.1659470187408462e-06 / (z+7)
-	x += 0.9934937113930748e-05 / (z+6)
-	x -= 0.1385710331296526     / (z+5)
-	x += 12.50734324009056      / (z+4)
-	x -= 176.6150291498386      / (z+3)
-	x += 771.3234287757674      / (z+2)
-	x -= 1259.139216722289      / (z+1)
-	x += 676.5203681218835      / z
-	x += 0.9999999999995183;
-    return log(x) - 5.58106146679532777 - z + (z - 0.5) * log(z + 6.5)
-end
-
 # complementary error function
 # \frac{2}{\sqrt{\pi}} \int_x^{\infty} e^{-t^2} dt
 # AS66, 2nd algorithm, http://lib.stat.cmu.edu/apstat/66
@@ -81,7 +63,7 @@ function _kf_gammap(s::Float64, z::Float64)
         if ((x / sum) < KF_GAMMA_EPS) break end
 	k += 1
     end
-    return exp(s * log(z) - z - kf_lgamma(s + 1.) + log(sum))
+    return exp(s * log(z) - z - lgamma(s + 1.) + log(sum))
 end
 
 function _kf_gammaq(s::Float64, z::Float64)
@@ -104,7 +86,7 @@ function _kf_gammaq(s::Float64, z::Float64)
             break
         end
     end
-    return exp(s * log(z) - z - kf_lgamma(s) - log(f))
+    return exp(s * log(z) - z - lgamma(s) - log(f))
 end
 
 function kf_gammap(s::Float64, z::Float64)
@@ -151,7 +133,7 @@ function kf_betai_aux(a::Float64, b::Float64, x::Float64)
         f *= d
         if abs(d - 1.) < KF_GAMMA_EPS break end
     end
-    return exp(kf_lgamma(a + b) - kf_lgamma(a) - kf_lgamma(b) + a * log(x) + b * log(1. - x)) / a / f
+    return exp(lgamma(a + b) - lgamma(a) - lgamma(b) + a * log(x) + b * log(1. - x)) / a / f
 end
 
 #
