@@ -6,7 +6,6 @@ import FishersExactTest.hgacc_t
 
 @testset "Fisher's Exact Test" begin
     @testset "kf_lgamma" begin
-        kf_lgamma = FishersExactTest.kf_lgamma
         @test kf_lgamma_cref(1.0) ≈ lgamma(1.0)
         @test kf_lgamma_cref(3.1415926) ≈ lgamma(3.1415926)
         for i in 1:9
