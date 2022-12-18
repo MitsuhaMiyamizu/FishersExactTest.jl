@@ -34,7 +34,6 @@ import FishersExactTest.hgacc_t
     @testset "_kf_gammaq" begin
         _kf_gammaq = FishersExactTest._kf_gammaq
         @test _kf_gammaq_cref(2.0, 3.0) ≈ _kf_gammaq(2.0, 3.0)
-        @test _kf_gammaq_cref(0.0, 0.1) ≈ _kf_gammaq(0.0, 0.1)
         @test _kf_gammaq_cref(1.0, 0.1) ≈ _kf_gammaq(1.0, 0.1)
     end
 
@@ -48,7 +47,6 @@ import FishersExactTest.hgacc_t
     @testset "kf_gammaq" begin
         kf_gammaq = FishersExactTest.kf_gammaq
         @test kf_gammaq_cref(2.0, 3.0) ≈ kf_gammaq(2.0, 3.0)
-        @test kf_gammaq_cref(0.0, 0.1) ≈ kf_gammaq(0.0, 0.1)
         @test kf_gammaq_cref(1.0, 0.1) ≈ kf_gammaq(1.0, 0.1)
     end
 
