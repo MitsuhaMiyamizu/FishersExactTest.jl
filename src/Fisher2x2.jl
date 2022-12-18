@@ -63,7 +63,7 @@ function _kf_gammap(s::Float64, z::Float64)
         if ((x / sum) < KF_GAMMA_EPS) break end
 	k += 1
     end
-    return exp(s * log(z) - z - lgamma(s + 1.) + log(sum))
+    return exp(s * log(z) - z - logabsgamma(s + 1.)[1] + log(sum))
 end
 
 function _kf_gammaq(s::Float64, z::Float64)
@@ -86,7 +86,7 @@ function _kf_gammaq(s::Float64, z::Float64)
             break
         end
     end
-    return exp(s * log(z) - z - lgamma(s) - log(f))
+    return exp(s * log(z) - z - logabsgamma(s)[1] - log(f))
 end
 
 function kf_gammap(s::Float64, z::Float64)
@@ -133,7 +133,7 @@ function kf_betai_aux(a::Float64, b::Float64, x::Float64)
         f *= d
         if abs(d - 1.) < KF_GAMMA_EPS break end
     end
-    return exp(lgamma(a + b) - lgamma(a) - lgamma(b) + a * log(x) + b * log(1. - x)) / a / f
+    return exp(logabsgamma(a + b)[1] - logabsgamma(a)[1] - logabsgamma(b)[1] + a * log(x) + b * log(1. - x)) / a / f
 end
 
 #
