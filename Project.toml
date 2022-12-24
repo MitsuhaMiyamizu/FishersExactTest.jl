@@ -1,6 +1,6 @@
 name = "FishersExactTest"
 uuid = "bb7b2d4f-b953-405a-be8a-3427bcf465e4"
-authors = ["MiyamizuMitsuha"]
+authors = ["MiyamizuMitsuha (https://github.com/MitsuhaMiyamizu)", "Ionizing (https://github.com/Ionizing)"]
 version = "1.2.0"
 
 [deps]
